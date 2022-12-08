@@ -1,13 +1,22 @@
 import { Actions } from './actions'
-import {
-  INCREASE_STEP, DECREASE_STEP
-} from './action-types'
+import { AccountInfoInterface } from './interfaces'
+import { INCREASE_STEP, DECREASE_STEP, ADD_ACCOUNT_INFO } from './action-types'
 export const initialState: InitialStateInterface = {
-  step: 1
+  step: 1,
+  accountInfo: {
+    userName: '',
+    userEmail: '',
+    userPassword: ''
+  },
+  shopifyKey: '',
+  gmailKey: ''
 }
 
 export interface InitialStateInterface {
   step: number
+  accountInfo: AccountInfoInterface
+  gmailKey: string
+  shopifyKey: string
 }
 
 export function reducer (state: InitialStateInterface = initialState, action: Actions): InitialStateInterface {
@@ -18,6 +27,10 @@ export function reducer (state: InitialStateInterface = initialState, action: Ac
     case DECREASE_STEP: {
       const decreasedStep = state.step - 1
       return { ...state, step: decreasedStep } }
+
+    case ADD_ACCOUNT_INFO: {
+      const newAccountInfo = action.payload
+      return { ...state, accountInfo: newAccountInfo } }
     default:
       return state
   }
