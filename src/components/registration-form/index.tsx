@@ -1,10 +1,19 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import sprite from '../../assets/icons.svg'
+import { InitialStateInterface } from '../../store/reducer'
+
+import ConfirmStage from './confirm-stage'
+import RegStages from './reg-stages'
 import ProgressMobileStepper from './stepper'
 
-import RegStages from './reg-stages'
 function RegistrationForm (): JSX.Element {
+  const isCompleteStage = useSelector((state: InitialStateInterface) => state.confirmStageBoolean)
+  if (isCompleteStage) {
+    return <ConfirmStage />
+  }
+
   return (
     <section className='py-4 px-8 text-xs leading-4 '>
       <a href="#" className='mb-4 flex items-center gap-[2px]'>

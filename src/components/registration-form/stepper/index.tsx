@@ -9,6 +9,8 @@ export default function ProgressMobileStepper (): JSX.Element {
   const dispatch = useDispatch()
 
   const step = useSelector((state: InitialStateInterface) => state.step)
+  const { name, email, password } = useSelector((state: InitialStateInterface) => state.accountInfo)
+  const userInfoBoolean = name === '' && email === '' && password === ''
   const maxSteps = 4
 
   const stepPersent: string = String(step / maxSteps * 100) + '%'
@@ -29,13 +31,14 @@ export default function ProgressMobileStepper (): JSX.Element {
         </div>
 
         <div className='flex justify-between leading-[18px] text-Shade40'>
-        <button className='px-2' onClick={handleBack} hidden={step === 1 }>
-          <svg className='mr-[2px] w-3 h-3 inline-block stroke-Shade40 fill-none'>
+        <button className='px-2 stroke-Shade40 disabled:stroke-Shade80 disabled:text-Shade80' onClick={handleBack} disabled={(step === 1)} hidden={step === 1 && userInfoBoolean }>
+          <svg className='ml-[2px] w-3 h-3 inline-block stroke-inherit fill-none '>
             <use href={sprite + '#icon_chevron-left'}></use>
           </svg>
           Back
         </button>
-        <button className='px-2 stroke-Shade40 disabled:stroke-Shade80 disabled:text-Shade80' onClick={handleNext} hidden={step === 1 } disabled={step === 2}>
+        <button className='px-2 stroke-Shade40 disabled:stroke-Shade80 disabled:text-Shade80' onClick={handleNext}
+         hidden={step === 1 && userInfoBoolean } disabled={ (step === 2)}>
           Next
           <svg className='ml-[2px] w-3 h-3 inline-block stroke-inherit fill-none '>
             <use href={sprite + '#icon_chevron-right'}></use>
