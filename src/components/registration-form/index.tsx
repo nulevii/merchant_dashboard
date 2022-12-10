@@ -7,9 +7,15 @@ import { InitialStateInterface } from '../../store/reducer'
 import ConfirmStage from './confirm-stage'
 import RegStages from './reg-stages'
 import ProgressMobileStepper from './stepper'
+import Loader from '../loader'
 
 function RegistrationForm (): JSX.Element {
   const isCompleteStage = useSelector((state: InitialStateInterface) => state.confirmStageBoolean)
+  const loadingStatus = useSelector((state: InitialStateInterface) => state.loading)
+
+  if (loadingStatus) {
+    return <Loader/>
+  }
   if (isCompleteStage) {
     return <ConfirmStage />
   }

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import StageOne from './stage-one'
 import StageTwo from './stage-two'
 import StageThree from './stage-three'
+import Loader from '../../loader'
 function RegStages (): JSX.Element {
   const step = useSelector((state: InitialStateInterface) => state.step)
 

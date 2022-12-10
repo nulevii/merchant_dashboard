@@ -3,14 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import { shopifyAdvantages, stageTwoCaption, stageTwoText } from '../../../../utilities/constants'
 import AdvantagesList from '../advantages-list'
-import { openConfirmStage, setConfirmStage } from '../../../../store/actions'
+import { getStoreFetch, openLoading } from '../../../../store/actions'
 import StageInfo from '../stage-info'
-import { getStore } from '../../../../store/sagas'
 function StageTwo (): JSX.Element {
   const dispatch = useDispatch()
   const onAddStore = (): void => {
-    dispatch(openConfirmStage())
-    dispatch(setConfirmStage('STORE_CONNECTED'))
+    dispatch(openLoading())
+    dispatch(getStoreFetch())
   }
   return (
     <>

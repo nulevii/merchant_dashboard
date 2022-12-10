@@ -11,7 +11,7 @@ function ConfirmStageLayout ({ properties }:
   buttonAction: () => void
   linkText?: string
   link?: string
-  onLink: () => void } }): JSX.Element {
+  onLink?: () => void } }): JSX.Element {
   const { caption, text, image, confirmIcon, button, buttonAction, linkText, link, onLink } = properties
   return <section className="pt-28 pb-4 px-8 text-xs leading-4 flex flex-col items-center">
       <div className="relative">

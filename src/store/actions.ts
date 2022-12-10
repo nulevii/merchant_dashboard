@@ -1,4 +1,5 @@
 import {
+  OPEN_LOADING, CLOSE_LOADING,
   INCREASE_STEP, DECREASE_STEP,
   CLOSE_CONFIRM_STAGE,
   OPEN_CONFIRM_STAGE,
@@ -7,7 +8,21 @@ import {
   GET_STORE_FETCH,
   GET_STORE_SUCCESS
 } from './action-types'
-import { AccountInfoInterface } from './interfaces'
+
+export const openLoading = (): OpenLoadingInterface => ({
+  type: OPEN_LOADING
+})
+interface OpenLoadingInterface {
+  type: typeof OPEN_LOADING
+}
+
+export const closeLoading = (): CloseLoadingInterface => ({
+  type: CLOSE_LOADING
+})
+interface CloseLoadingInterface {
+  type: typeof CLOSE_LOADING
+}
+
 export const increaseStep = (): IncreaseStepInterface => ({
   type: INCREASE_STEP
 })
@@ -45,23 +60,36 @@ interface CloseConfirmStageInterface {
   type: typeof CLOSE_CONFIRM_STAGE
 }
 
-export const addAccountInfo = (payload: AccountInfoInterface): AddAccountInfoInterface => ({
+interface LoginInfo { email: string, name: string, password: string }
+export const addAccountInfo = (payload: LoginInfo): AddAccountInfoInterface => ({
   type: ADD_ACCOUNT_INFO,
   payload
 })
 interface AddAccountInfoInterface {
   type: typeof ADD_ACCOUNT_INFO
-  payload: AccountInfoInterface
+  payload: LoginInfo
 }
 
-export const getStoreFetch = (): any => ({
+export const getStoreFetch = (): GetStoreFetchInterface => ({
   type: GET_STORE_FETCH
 })
+interface GetStoreFetchInterface {
+  type: typeof GET_STORE_FETCH
+}
+
+interface GetStoreSuccessInterface {
+  type: typeof GET_STORE_SUCCESS
+  payload: object
+}
 
 export type Actions =
+OpenLoadingInterface |
+CloseLoadingInterface |
 IncreaseStepInterface |
 DecreaseStepInterface |
 AddAccountInfoInterface |
 OpenConfirmStageInterface |
 CloseConfirmStageInterface |
-SetConfirmStageInterface
+SetConfirmStageInterface |
+GetStoreFetchInterface |
+GetStoreSuccessInterface
