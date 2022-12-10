@@ -1,4 +1,5 @@
 import { Actions } from './actions'
+import { postRegister } from '../utilities/api_calls'
 import { AccountInfoInterface, shopifyStoreInterface } from './interfaces'
 import {
   OPEN_LOADING,
@@ -9,8 +10,12 @@ import {
   OPEN_CONFIRM_STAGE,
   SET_CONFIRM_STAGE,
   ADD_ACCOUNT_INFO,
-  GET_STORE_SUCCESS
+  GET_STORE_SUCCESS,
+  GET_GMAIL_SUCCESS,
+  POST_REGISTER_FETCH,
+  POST_REGISTER_SUCCESS
 } from './action-types'
+
 export const initialState: InitialStateInterface = {
   loading: false,
   step: 1,
@@ -76,6 +81,19 @@ export function reducer (state: InitialStateInterface = initialState, action: Ac
       newAccountInfo.shop_token = newshopifyStore.token
       const confirmStage = 'STORE_CONNECTED'
       return { ...state, shopifyStore: newshopifyStore, accountInfo: newAccountInfo, loading, confirmStageBoolean, confirmStage }
+    }
+    case GET_GMAIL_SUCCESS: {
+      const newGmailKey = action.payload as shopifyStoreInterface
+      const newAccountInfo = { ...state.accountInfo }
+      newAccountInfo.google_token = newGmailKey.token
+
+      return { ...state, accountInfo: newAccountInfo }
+    }
+    case POST_REGISTER_SUCCESS: {
+      const confirmStageBoolean = true
+      const confirmStage = 'FINAL_STAGE'
+      const loading = false
+      return { ...state, confirmStageBoolean, confirmStage, loading }
     }
     default:
       return state

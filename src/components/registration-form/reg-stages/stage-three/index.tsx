@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import AdvantagesList from '../advantages-list'
 import { supportEmailAdvantages, stageThreeCaption, stageThreeText } from '../../../../utilities/constants'
-import { openConfirmStage, setConfirmStage } from '../../../../store/actions'
+import { openLoading, getGmailFetch } from '../../../../store/actions'
 
 import sprite from '../../../../assets/icons.svg'
 
@@ -10,8 +10,8 @@ import StageInfo from '../stage-info'
 function StageThree (): JSX.Element {
   const dispatch = useDispatch()
   const onAddGoogle = (): void => {
-    dispatch(setConfirmStage('FINAL_STAGE'))
-    dispatch(openConfirmStage())
+    dispatch(openLoading())
+    dispatch(getGmailFetch())
   }
   return (
     <>

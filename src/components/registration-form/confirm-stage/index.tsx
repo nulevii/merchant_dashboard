@@ -11,7 +11,6 @@ function ConfirmStage (): JSX.Element {
 
   if (confirmStage === 'STORE_CONNECTED') {
     const shopifyStore = useSelector((state: InitialStateInterface) => state.shopifyStore)
-    console.log(shopifyStore)
     const image = (shopifyStore?.shop_logo_url !== undefined) ? shopifyStore?.shop_logo_url : 'https://wp.salesforce.com/en-us/wp-content/uploads/sites/4/2021/07/salesforce-logo.jpg?w=1024'
     const storeName: string = ((shopifyStore?.shop_name !== undefined) ? shopifyStore?.shop_name : 'Not found').toUpperCase()
     const buttonAction = (): void => {
@@ -38,7 +37,6 @@ function ConfirmStage (): JSX.Element {
 
   if (confirmStage === 'STORE_ALREADY_CONNECTED') {
     const shopifyStore = useSelector((state: InitialStateInterface) => state.shopifyStore)
-    console.log(shopifyStore)
     const image = (shopifyStore?.shop_logo_url !== undefined) ? shopifyStore?.shop_logo_url : 'https://wp.salesforce.com/en-us/wp-content/uploads/sites/4/2021/07/salesforce-logo.jpg?w=1024'
     const storeName: string = ((shopifyStore?.shop_name !== undefined) ? shopifyStore?.shop_name : 'Not found').toUpperCase()
     const buttonAction = (): void => {
@@ -69,7 +67,7 @@ function ConfirmStage (): JSX.Element {
     const properties = {
       caption: 'You’re ready to go!',
       text: 'Chad doesn’t support mobile browsers. To access your dashboard, login from your laptop or desktop computer.',
-      confirmIcon: true,
+      confirmIcon: false,
       button: 'Ok',
       buttonAction
     }

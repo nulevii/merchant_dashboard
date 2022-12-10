@@ -6,8 +6,14 @@ import {
   SET_CONFIRM_STAGE,
   ADD_ACCOUNT_INFO,
   GET_STORE_FETCH,
-  GET_STORE_SUCCESS
+  GET_STORE_SUCCESS,
+  GET_GMAIL_FETCH,
+  GET_GMAIL_SUCCESS,
+  POST_REGISTER_FETCH,
+  POST_REGISTER_SUCCESS
 } from './action-types'
+
+import { AccountInfoInterface } from './interfaces'
 
 export const openLoading = (): OpenLoadingInterface => ({
   type: OPEN_LOADING
@@ -82,6 +88,32 @@ interface GetStoreSuccessInterface {
   payload: object
 }
 
+export const getGmailFetch = (): GetGmailFetchInterface => ({
+  type: GET_GMAIL_FETCH
+})
+interface GetGmailFetchInterface {
+  type: typeof GET_GMAIL_FETCH
+}
+
+interface GetGmailSuccessInterface {
+  type: typeof GET_GMAIL_SUCCESS
+  payload: object
+}
+
+export const postRegisterFetch = (payload: AccountInfoInterface): PostRegisterFetchInterface => ({
+  type: POST_REGISTER_FETCH,
+  payload
+})
+interface PostRegisterFetchInterface {
+  type: typeof POST_REGISTER_FETCH
+  payload: AccountInfoInterface
+}
+
+interface PostRegisterSuccessInterface {
+  type: typeof POST_REGISTER_SUCCESS
+  result: object
+}
+
 export type Actions =
 OpenLoadingInterface |
 CloseLoadingInterface |
@@ -92,4 +124,8 @@ OpenConfirmStageInterface |
 CloseConfirmStageInterface |
 SetConfirmStageInterface |
 GetStoreFetchInterface |
-GetStoreSuccessInterface
+GetStoreSuccessInterface |
+GetGmailFetchInterface |
+GetGmailSuccessInterface |
+PostRegisterFetchInterface |
+PostRegisterSuccessInterface
