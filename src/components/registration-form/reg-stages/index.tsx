@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import StageOne from './stage-one'
 import StageTwo from './stage-two'
 import StageThree from './stage-three'
-import Loader from '../../loader'
+import LoginStage from './login-stage'
 function RegStages (): JSX.Element {
   const step = useSelector((state: InitialStateInterface) => state.step)
 
@@ -19,7 +19,8 @@ function RegStages (): JSX.Element {
   if (step === 3) {
     return <StageThree />
   }
-  return <div></div>
+
+  return <LoginStage />
 }
 
 export default RegStages

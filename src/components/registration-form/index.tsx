@@ -12,7 +12,7 @@ import Loader from '../loader'
 function RegistrationForm (): JSX.Element {
   const isCompleteStage = useSelector((state: InitialStateInterface) => state.confirmStageBoolean)
   const loadingStatus = useSelector((state: InitialStateInterface) => state.loading)
-
+  const step = useSelector((state: InitialStateInterface) => state.step)
   if (loadingStatus) {
     return <Loader/>
   }
@@ -28,7 +28,8 @@ function RegistrationForm (): JSX.Element {
       </svg>
       <h1 className='not-italic font-bold text-2xl leading-8 text-Unlinked21'>Chad</h1>
       </a>
-      <ProgressMobileStepper />
+      {(step !== 4) ? <ProgressMobileStepper /> : null}
+
       <RegStages />
     </section>
   )

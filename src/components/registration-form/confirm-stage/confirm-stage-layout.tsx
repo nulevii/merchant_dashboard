@@ -14,7 +14,7 @@ function ConfirmStageLayout ({ properties }:
   onLink?: () => void } }): JSX.Element {
   const { caption, text, image, confirmIcon, button, buttonAction, linkText, link, onLink } = properties
   const userImage = (image !== undefined) ? image : succesImage
-  return <section className="pt-28 pb-4 px-8 text-xs leading-4 flex flex-col items-center">
+  return <section className="pt-28 pb-32 px-8 text-xs leading-4 flex flex-col items-center">
       <div className="relative">
         <img
           className="w-20 h-20   mb-8 border object-cover rounded-full"

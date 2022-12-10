@@ -1,9 +1,11 @@
 import {
   OPEN_LOADING, CLOSE_LOADING,
-  INCREASE_STEP, DECREASE_STEP,
+  SET_STEP,
   CLOSE_CONFIRM_STAGE,
   OPEN_CONFIRM_STAGE,
   SET_CONFIRM_STAGE,
+  TOGLE_NOT_USE_GOOGLE,
+  TOGLE_NOT_USE_SHOPIFY,
   ADD_ACCOUNT_INFO,
   GET_STORE_FETCH,
   GET_STORE_SUCCESS,
@@ -29,18 +31,13 @@ interface CloseLoadingInterface {
   type: typeof CLOSE_LOADING
 }
 
-export const increaseStep = (): IncreaseStepInterface => ({
-  type: INCREASE_STEP
+export const setStep = (payload: number): SetStepInterface => ({
+  payload,
+  type: SET_STEP
 })
-interface IncreaseStepInterface {
-  type: typeof INCREASE_STEP
-}
-
-export const decreaseStep = (): DecreaseStepInterface => ({
-  type: DECREASE_STEP
-})
-interface DecreaseStepInterface {
-  type: typeof DECREASE_STEP
+interface SetStepInterface {
+  type: typeof SET_STEP
+  payload: number
 }
 
 export const openConfirmStage = (): OpenConfirmStageInterface => ({
@@ -66,14 +63,27 @@ interface CloseConfirmStageInterface {
   type: typeof CLOSE_CONFIRM_STAGE
 }
 
-interface LoginInfo { email: string, name: string, password: string }
-export const addAccountInfo = (payload: LoginInfo): AddAccountInfoInterface => ({
+export const toggleNotUseShopify = (): ToggleNotUseShopifyInterface => ({
+  type: TOGLE_NOT_USE_SHOPIFY
+})
+interface ToggleNotUseShopifyInterface {
+  type: typeof TOGLE_NOT_USE_SHOPIFY
+}
+
+export const toggleNotUseGoogle = (): ToggleNotUseGoogleInterface => ({
+  type: TOGLE_NOT_USE_GOOGLE
+})
+interface ToggleNotUseGoogleInterface {
+  type: typeof TOGLE_NOT_USE_GOOGLE
+}
+
+export const addAccountInfo = (payload: AccountInfoInterface): AddAccountInfoInterface => ({
   type: ADD_ACCOUNT_INFO,
   payload
 })
 interface AddAccountInfoInterface {
   type: typeof ADD_ACCOUNT_INFO
-  payload: LoginInfo
+  payload: AccountInfoInterface
 }
 
 export const getStoreFetch = (): GetStoreFetchInterface => ({
@@ -117,12 +127,13 @@ interface PostRegisterSuccessInterface {
 export type Actions =
 OpenLoadingInterface |
 CloseLoadingInterface |
-IncreaseStepInterface |
-DecreaseStepInterface |
+SetStepInterface |
 AddAccountInfoInterface |
 OpenConfirmStageInterface |
 CloseConfirmStageInterface |
 SetConfirmStageInterface |
+ToggleNotUseGoogleInterface |
+ToggleNotUseShopifyInterface |
 GetStoreFetchInterface |
 GetStoreSuccessInterface |
 GetGmailFetchInterface |

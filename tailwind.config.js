@@ -2,6 +2,12 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    theme: {
+      screens: {
+        tablet: '834px',
+        pc: '1194px'
+      }
+    },
     extend: {
       fontFamily: {
         eudoxus: ['eudoxus sans'],

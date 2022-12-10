@@ -2,8 +2,8 @@ export interface AccountInfoInterface {
   name: string
   email: string
   password: string
-  shop_token: string
-  google_token: string
+  shop_token?: string
+  google_token?: string
 }
 
 export interface shopifyStoreInterface {

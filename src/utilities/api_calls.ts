@@ -15,6 +15,9 @@ export const getGmail = async (): Promise<void> => {
 
 export const postRegister = async (userData: AccountInfoInterface): Promise<void> => {
   return await axios.post(`${API_URL}/register`, userData)
-    .then(response => response.data)
+    .then(response => {
+      console.log(response.data)
+      return response.data
+    })
     .catch(error => { console.log(error) })
 }

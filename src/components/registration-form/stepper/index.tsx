@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { InitialStateInterface } from '../../../store/reducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { increaseStep, decreaseStep } from '../../../store/actions'
+import { setStep } from '../../../store/actions'
 
 import sprite from '../../../assets/icons.svg'
 
@@ -16,11 +16,11 @@ export default function ProgressMobileStepper (): JSX.Element {
   const stepPersent: string = String(step / maxSteps * 100) + '%'
 
   const handleNext = (): void => {
-    dispatch(increaseStep())
+    dispatch(setStep(step + 1))
   }
 
   const handleBack = (): void => {
-    dispatch(decreaseStep())
+    dispatch(setStep(step - 1))
   }
 
   return (
@@ -38,7 +38,7 @@ export default function ProgressMobileStepper (): JSX.Element {
           Back
         </button>
         <button className='px-2 stroke-Shade40 disabled:stroke-Shade80 disabled:text-Shade80' onClick={handleNext}
-         hidden={step === 1 && userInfoBoolean } disabled={ (step === 2)}>
+         hidden={step === 1 && userInfoBoolean } disabled={ (step === 2) || (step === 3)}>
           Next
           <svg className='ml-[2px] w-3 h-3 inline-block stroke-inherit fill-none '>
             <use href={sprite + '#icon_chevron-right'}></use>
@@ -47,6 +47,5 @@ export default function ProgressMobileStepper (): JSX.Element {
         </div>
 
     </div>
-
   )
 }

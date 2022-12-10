@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { InitialStateInterface } from '../../../store/reducer'
-import { increaseStep, closeConfirmStage, setConfirmStage } from '../../../store/actions'
+import { setStep, closeConfirmStage, addAccountInfo } from '../../../store/actions'
 
 import ConfirmStageLayout from './confirm-stage-layout'
+import Loader from '../../loader'
 
 function ConfirmStage (): JSX.Element {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ function ConfirmStage (): JSX.Element {
     const storeName: string = ((shopifyStore?.shop_name !== undefined) ? shopifyStore?.shop_name : 'Not found').toUpperCase()
     const buttonAction = (): void => {
       dispatch(closeConfirmStage())
-      dispatch(increaseStep())
+      dispatch(setStep(3))
     }
     const onLink = (): void => {
       dispatch(closeConfirmStage())
@@ -41,7 +42,7 @@ function ConfirmStage (): JSX.Element {
     const storeName: string = ((shopifyStore?.shop_name !== undefined) ? shopifyStore?.shop_name : 'Not found').toUpperCase()
     const buttonAction = (): void => {
       dispatch(closeConfirmStage())
-      dispatch(increaseStep())
+      dispatch(setStep(3))
     }
     const onLink = (): void => {
       dispatch(closeConfirmStage())
@@ -60,9 +61,27 @@ function ConfirmStage (): JSX.Element {
     return <ConfirmStageLayout properties ={properties}/>
   }
 
+  if (confirmStage === 'PLATFORM_RESPONSE_STAGE') {
+    const buttonAction = (): void => {
+      dispatch(addAccountInfo({ email: '', password: '', name: '', google_token: '', shop_token: '' }))
+      dispatch(setStep(4))
+      dispatch(closeConfirmStage())
+    }
+    const properties = {
+      caption: 'Response received',
+      text: 'Thank you for your interest in Chad! We’ll be hard at work building integrations to support your platform.',
+      confirmIcon: false,
+      button: 'Done',
+      buttonAction
+    }
+
+    return <ConfirmStageLayout properties ={properties}/>
+  }
+
   if (confirmStage === 'FINAL_STAGE') {
     const buttonAction = (): void => {
-      dispatch(setConfirmStage('LOGIN'))
+      dispatch(setStep(4))
+      dispatch(closeConfirmStage())
     }
     const properties = {
       caption: 'You’re ready to go!',
@@ -75,7 +94,34 @@ function ConfirmStage (): JSX.Element {
     return <ConfirmStageLayout properties ={properties}/>
   }
 
-  return <div>loading</div>
+  if (confirmStage === 'USE_DESKTOP_STAGE') {
+    const { email } = useSelector((state: InitialStateInterface) => state.accountInfo)
+    const shopLogo = useSelector((state: InitialStateInterface) => state.shopifyStore?.shop_logo_url)
+    const buttonAction = (): void => {
+      dispatch(setStep(4))
+      dispatch(closeConfirmStage())
+    }
+    const onLink = (): void => {
+      dispatch(addAccountInfo({ email: '', password: '', name: '', google_token: '', shop_token: '' }))
+      dispatch(setStep(4))
+      dispatch(closeConfirmStage())
+    }
+    const properties = {
+      image: shopLogo,
+      caption: 'Use your desktop to access Chad',
+      text: 'Chad doesn’t support mobile browsers. To access your dashboard, login from your laptop or desktop computer.',
+      confirmIcon: false,
+      button: 'Ok',
+      buttonAction,
+      linkText: `Not ${email}?`,
+      link: 'Logout',
+      onLink
+    }
+
+    return <ConfirmStageLayout properties ={properties}/>
+  }
+
+  return <Loader />
 }
 
 export default ConfirmStage

@@ -8,6 +8,9 @@ export const stageOneText = 'Go live in 10 minutes! Our self-service widget empo
 export const stageTwoCaption = 'Connect to Shopify Store'
 export const stageTwoText = 'Installs the Chad widget in your Shopify store and sets it up to display your customers’ order information and self-serve options.'
 
+export const notUseShopifyCaption = 'Don’t use Shopify?'
+export const notUseShopifyText = 'Chad Beta is currently only available on Shopify. We’ll send you an email when Chad becomes available on your platform.'
+
 export const stageThreeCaption = 'Connect to customer support email'
 export const stageThreeText = 'Allows Chad to send automated responses on your behalf from your usual support mailbox'
 
@@ -16,6 +19,9 @@ export const noGmailText = 'Chad Beta is currently only integrated with Gmail. W
 
 export const noShopifyCaption = 'Don’t use Shopify?'
 export const noShopifyText = 'Chad Beta is currently only available on Shopify. We’ll send you an email when Chad becomes available on your platform.'
+
+export const loginCaption = 'Welcome back'
+export const loginText = 'Feeling ready to take on the day? Chad is too!'
 
 export const shopifyAdvantages = [{
   AdvantageHeading: 'Track orders and shipping',
@@ -38,3 +44,15 @@ export const supportEmailAdvantages = [{
   AdvantageHeading: 'Categorical inbox tags',
   AdvantageText: 'Tags your emails by category so you know what to expect before even opening an email'
 }]
+
+export const platforms = [
+  'Salesforce',
+  'Ecwid',
+  'Other'
+]
+
+export const MailPlatforms = [
+  'Yahoo',
+  'Microsoft Outlook',
+  'Other'
+]

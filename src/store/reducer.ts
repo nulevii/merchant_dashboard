@@ -1,18 +1,17 @@
 import { Actions } from './actions'
-import { postRegister } from '../utilities/api_calls'
 import { AccountInfoInterface, shopifyStoreInterface } from './interfaces'
 import {
   OPEN_LOADING,
   CLOSE_LOADING,
-  INCREASE_STEP,
-  DECREASE_STEP,
+  SET_STEP,
   CLOSE_CONFIRM_STAGE,
   OPEN_CONFIRM_STAGE,
   SET_CONFIRM_STAGE,
   ADD_ACCOUNT_INFO,
+  TOGLE_NOT_USE_GOOGLE,
+  TOGLE_NOT_USE_SHOPIFY,
   GET_STORE_SUCCESS,
   GET_GMAIL_SUCCESS,
-  POST_REGISTER_FETCH,
   POST_REGISTER_SUCCESS
 } from './action-types'
 
@@ -29,7 +28,9 @@ export const initialState: InitialStateInterface = {
     google_token: ''
   },
   shopifyStore: null,
-  gmailKey: ''
+  gmailKey: '',
+  notUseShopify: false,
+  notUseGoogle: false
 }
 
 export interface InitialStateInterface {
@@ -40,6 +41,8 @@ export interface InitialStateInterface {
   accountInfo: AccountInfoInterface
   gmailKey: string
   shopifyStore: shopifyStoreInterface | null
+  notUseShopify: boolean
+  notUseGoogle: boolean
 }
 
 export function reducer (state: InitialStateInterface = initialState, action: Actions): InitialStateInterface {
@@ -50,12 +53,9 @@ export function reducer (state: InitialStateInterface = initialState, action: Ac
     case CLOSE_LOADING: {
       const loading = false
       return { ...state, loading } }
-    case INCREASE_STEP: {
-      const increasedStep = state.step + 1
-      return { ...state, step: increasedStep } }
-    case DECREASE_STEP: {
-      const decreasedStep = state.step - 1
-      return { ...state, step: decreasedStep } }
+    case SET_STEP: {
+      const step = action.payload
+      return { ...state, step } }
     case OPEN_CONFIRM_STAGE: {
       const newConfirmStageBoolean = true
       return { ...state, confirmStageBoolean: newConfirmStageBoolean } }
@@ -65,27 +65,35 @@ export function reducer (state: InitialStateInterface = initialState, action: Ac
     case SET_CONFIRM_STAGE: {
       const newConfirmStage = action.payload
       return { ...state, confirmStage: newConfirmStage } }
+    case TOGLE_NOT_USE_SHOPIFY: {
+      const notUseShopify = !state.notUseShopify
+      return { ...state, notUseShopify } }
+    case TOGLE_NOT_USE_GOOGLE: {
+      const notUseGoogle = !state.notUseGoogle
+      return { ...state, notUseGoogle } }
     case ADD_ACCOUNT_INFO: {
       const newAccountInfo = { ...state.accountInfo, ...action.payload }
       return { ...state, accountInfo: newAccountInfo } }
 
     case GET_STORE_SUCCESS: {
-      const newshopifyStore = action.payload as shopifyStoreInterface
+      const shopifyResponse = action.payload as shopifyStoreInterface
+      console.log(shopifyResponse)
       const loading = false
       const confirmStageBoolean = true
-      if (state.accountInfo.shop_token === newshopifyStore.token) {
+      if (state.accountInfo.shop_token === shopifyResponse.token) {
         const confirmStage = 'STORE_ALREADY_CONNECTED'
         return { ...state, confirmStage, loading, confirmStageBoolean }
       }
       const newAccountInfo = { ...state.accountInfo }
-      newAccountInfo.shop_token = newshopifyStore.token
+      newAccountInfo.shop_token = shopifyResponse.token
       const confirmStage = 'STORE_CONNECTED'
-      return { ...state, shopifyStore: newshopifyStore, accountInfo: newAccountInfo, loading, confirmStageBoolean, confirmStage }
+      return { ...state, shopifyStore: shopifyResponse, accountInfo: newAccountInfo, loading, confirmStageBoolean, confirmStage }
     }
     case GET_GMAIL_SUCCESS: {
-      const newGmailKey = action.payload as shopifyStoreInterface
+      const googleResponse = action.payload as shopifyStoreInterface
+      console.log(googleResponse)
       const newAccountInfo = { ...state.accountInfo }
-      newAccountInfo.google_token = newGmailKey.token
+      newAccountInfo.google_token = googleResponse.token
 
       return { ...state, accountInfo: newAccountInfo }
     }
