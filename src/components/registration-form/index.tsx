@@ -38,7 +38,7 @@ function RegistrationForm (): JSX.Element {
         </svg>
         <h1 className='not-italic font-bold text-2xl leading-8 text-Unlinked21'>Chad</h1>
         </a>
-        {(step > 4) ? <ProgressMobileStepper /> : null}
+        {(step > 4) ? null : <ProgressMobileStepper />}
 
         <RegStages />
       </section>

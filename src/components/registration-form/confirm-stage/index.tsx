@@ -64,7 +64,7 @@ function ConfirmStage (): JSX.Element {
   if (confirmStage === 'PLATFORM_RESPONSE_STAGE') {
     const buttonAction = (): void => {
       dispatch(addAccountInfo({ email: '', password: '', name: '', google_token: '', shop_token: '' }))
-      dispatch(setStep(4))
+      dispatch(setStep(5))
       dispatch(closeConfirmStage())
     }
     const properties = {

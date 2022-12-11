@@ -32,7 +32,7 @@ export default function ProgressMobileStepper (): JSX.Element {
 
         <div className='flex justify-between leading-[18px] text-Shade40'>
         <button className='px-2 stroke-Shade40 disabled:stroke-Shade80 disabled:text-Shade80' onClick={handleBack} disabled={(step === 1)} hidden={step === 1 && userInfoBoolean }>
-          <svg className='ml-[2px] w-3 h-3 inline-block stroke-inherit fill-none '>
+          <svg className='mr-[2px] w-3 h-3 inline-block stroke-inherit fill-none '>
             <use href={sprite + '#icon_chevron-left'}></use>
           </svg>
           Back

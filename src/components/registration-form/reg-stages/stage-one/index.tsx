@@ -21,7 +21,7 @@ function StageOne (): JSX.Element {
     setPasswordShown(!passwordShown)
   }
   const onLogin = (): void => {
-    dispatch(setStep(4))
+    dispatch(setStep(5))
   }
 
   return (
