@@ -11,7 +11,7 @@ import './App.css'
 function App (): JSX.Element {
   return (
     <Provider store={store}>
-      <main>
+      <main className='flex w-screen'>
       <RegistrationStage />
       <RegistrationForm />
       </main>

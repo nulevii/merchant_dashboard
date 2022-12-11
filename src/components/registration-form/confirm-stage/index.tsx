@@ -80,7 +80,7 @@ function ConfirmStage (): JSX.Element {
 
   if (confirmStage === 'FINAL_STAGE') {
     const buttonAction = (): void => {
-      dispatch(setStep(4))
+      dispatch(setStep(5))
       dispatch(closeConfirmStage())
     }
     const properties = {
@@ -98,12 +98,12 @@ function ConfirmStage (): JSX.Element {
     const { email } = useSelector((state: InitialStateInterface) => state.accountInfo)
     const shopLogo = useSelector((state: InitialStateInterface) => state.shopifyStore?.shop_logo_url)
     const buttonAction = (): void => {
-      dispatch(setStep(4))
+      dispatch(setStep(5))
       dispatch(closeConfirmStage())
     }
     const onLink = (): void => {
       dispatch(addAccountInfo({ email: '', password: '', name: '', google_token: '', shop_token: '' }))
-      dispatch(setStep(4))
+      dispatch(setStep(5))
       dispatch(closeConfirmStage())
     }
     const properties = {

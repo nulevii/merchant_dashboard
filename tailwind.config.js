@@ -2,13 +2,14 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    theme: {
-      screens: {
-        tablet: '834px',
-        pc: '1194px'
-      }
+    screens: {
+      tablet: '834px',
+      pc: '1194px'
     },
     extend: {
+      backgroundImage: {
+        'form-pattern': "url('/src/assets/background.jpg')"
+      },
       fontFamily: {
         eudoxus: ['eudoxus sans'],
         inter: ['Inter', 'sans-serif']

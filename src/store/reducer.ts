@@ -100,8 +100,9 @@ export function reducer (state: InitialStateInterface = initialState, action: Ac
     case POST_REGISTER_SUCCESS: {
       const confirmStageBoolean = true
       const confirmStage = 'FINAL_STAGE'
+      const step = 4
       const loading = false
-      return { ...state, confirmStageBoolean, confirmStage, loading }
+      return { ...state, confirmStageBoolean, confirmStage, loading, step }
     }
     default:
       return state
