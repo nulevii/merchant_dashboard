@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/merchant_dashboard/static/css/main.6fcbd23c.css",
+    "main.js": "/merchant_dashboard/static/js/main.541f2068.js",
+    "static/media/background.jpg": "/merchant_dashboard/static/media/background.5151090fc716daa03693.jpg",
+    "static/media/icons.svg": "/merchant_dashboard/static/media/icons.f00479aefc8aba54a5ef22d628781b04.svg",
+    "index.html": "/merchant_dashboard/index.html",
+    "main.6fcbd23c.css.map": "/merchant_dashboard/static/css/main.6fcbd23c.css.map",
+    "main.541f2068.js.map": "/merchant_dashboard/static/js/main.541f2068.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6fcbd23c.css",
+    "static/js/main.541f2068.js"
+  ]
+}
